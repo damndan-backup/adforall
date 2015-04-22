@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=title%></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="stylesheets/layout.css">
+    <link rel="shortcut icon" type="image/x-icon" href="stylesheets/images/splashicon.ico" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/gStylesheet.css">
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+
+    <!-- <link rel="stylesheet" type="text/css" href="stylesheets/Update/stylesheet_new.css"> -->
+
+
+    <script type="text/javascript" src="stylesheets/script.js"></script>
+  </head>
+  <body>
+		<center>
+			
+			<div id='bar'></div>
+
+			<img src='stylesheets/images/titleBlue.png' id='title'/>
+
+			<div id='info' class='selectable'>Sign up for Splash:</div>
+			
+			<form id="signUp" action="/advertiser/create" name="signUpForm" method="post" autocomplete="off">
+				<input type='hidden' name='_csrf' value='<%=csrfToken%>'>
+
+				<input id='email' class='box' type="text" name="email" placeholder="Email address" spellcheck='false' required><br>
+				<input id='name' class='box' type="text" name="first_name" placeholder="Name" spellcheck='false'><br>
+				<input id='pass' class='box' type="password" name="password" placeholder="Password" required><br>
+				<input id='pass2' class='box' type="password" name="pass2" placeholder="Confirm password"><br>
+				<br>
+				<div id='goContainer'><input id='goButton' type='submit'></input></div>
+			</form><br><br><br><br>
+
+			<div class='selectable'>Got an account? <a href="/">Log in here</a></div>
+
+		</center>
+	</body>
+</html>
+
+<!--
+<div class='main wrapper'>
+	<div class='container'>
+	    <form action='/advertiser/create' method='post'>
+	    	<input type='hidden' name='_csrf' value='<%=csrfToken%>'>
+
+	        <input type='text' name='email' placeholder='email' required>
+	        <input type='password' name='password' placeholder='password' required>
+            <input type='text' name='first_name' placeholder='first name'>
+			<input type='text' name='last_name' placeholder='last name'>	
+			<input type='text' name='account_name' placeholder='account name'>	
+	        <input type='submit'></input>
+	    </form>
+	</div>
+</div>

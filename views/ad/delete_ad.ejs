@@ -1,0 +1,12 @@
+<% layout('../layout') -%>
+<div class='main wrapper'>
+	<div class='container'>
+	    <form action='/ad/delete' method='post'>
+	    	<input type='hidden' name='_csrf' value='<%=csrfToken%>'>
+
+	        <input type='text' name='id' placeholder='Enter id of ad' required>
+
+	        <input type='submit'></input>
+	    </form>
+	</div>
+</div>

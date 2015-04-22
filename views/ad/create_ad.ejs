@@ -1,0 +1,108 @@
+<% layout('../layout') -%>
+
+<script type="text/javascript" src="stylesheets/Update/script.js"></script>
+<script type="text/javascript" src="stylesheets/data.js"></script>
+
+	<div id='bar'></div>
+
+	<center><img src='stylesheets/images/titleBlue.png' id='title'/></center>
+
+	<div id='pageContainer'>
+
+		<form id = 'formContainer' action='/ad/create' method='post'>
+	    	<input type='hidden' name='_csrf' value='<%=csrfToken%>'>
+
+			<center id='header'>Customize Your Circle</center>
+
+			<div id='details' class='formHeader'>Give us some details:
+
+				<div id='formName'>
+					<div class='formDescription'>Name of Circle:</div>
+					<input id='user' class='box' type="text" name="title" placeholder="Enter a name...">
+				</div><br>
+
+				<div id='formName'>
+					<div class='formDescription'>Name of Establishment:</div>
+					<input id='user' class='box' type="text" name="storeName" placeholder="Enter a name...">
+				</div><br>
+
+				<div id='formLocation'>
+					<div class='formDescription'>Location:</div>
+					<a id='mapLink' href='#mapCanvas'>Click the map</a>
+				</div><br>
+
+				<div id='formRadius'>
+					<div class='formDescription'>Radius:</div>
+				    <div id='radios2'>
+						<input id='range1' type="radio" name="range" value="1m" checked="checked">1 mile&nbsp;&nbsp;
+						<input id='range2' type="radio" name="range" value="3m">3 miles&nbsp;&nbsp;
+						<input id='range3' type="radio" name="range" value="10m">10 miles
+					</div>
+				</div><br>
+
+				<div id='formTime'>
+
+					<div id='dateInput'>
+						<div class='formDescription'>Date Range:</div>
+						<div id='dates'>
+							Start:&nbsp	<input type='date' name='start_date' placeholder='startdate'><br>
+			        		End:&nbsp;  <input id='enddate' type='date' name='end_date' placeholder='enddate'><br>
+			        	</div><br>
+		        	</div>
+
+					<div class='formDescription'>Time of Day:</div>
+					<div id='checksRight'>
+						<input type="checkbox" name="targeting_info[time]" value="4">12:00 pm - 4:00 pm<br>
+						<input type="checkbox" name="targeting_info[time]" value="5">4:00 pm - 8:00 pm<br>
+						<input type="checkbox" name="targeting_info[time]" value="6">8:00 pm - 12:00 am<br>
+					</div>
+					<div id='checksLeft'>
+						<input type="checkbox" name="targeting_info[time]" value="0">Unspecified<br>
+						<input type="checkbox" name="targeting_info[time]" value="1">12:00 am - 4:00 am<br>
+						<input type="checkbox" name="targeting_info[time]" value="2">4:00 am - 8:00 am<br>
+						<input type="checkbox" name="targeting_info[time]" value="3">8:00 am - 12:00 pm<br>
+					</div>
+					
+				</div><br><br><br><br>
+
+				<div id='formListens'>
+					<div class='formDescription'>Max Distributions Per Day:</div>
+					<div class='slideLabel' id='listenVal'>200</div>
+				    <input type="range" class="slider" name="listensSlider" id="listensSlider" value="200" min="0" max="999" onchange="updateSlider(value, 1)">
+				</div><br>
+		
+				<div id='formMinPeople'>
+					<div class='formDescription'># of people per coupon:</div>
+					<input type='number' class='smallBox' name='minPeople'>
+				</div>
+
+			</div><br>
+
+			<div id="upload" class="formHeader">Customize your ad:<br>
+
+				<div class='formDescription'>Summarize your deal:</div><br>
+				<div><textarea id='summary' placeholder='Enter a summary...'></textarea></div>
+
+				<div class='formDescription'>Upload a photo:</div>
+				<a id='browse' href=''>browse...</a>
+
+			</div><br>
+
+			<div id="cost" class="formHeader">Cost per month*:
+				
+				<div id='formCost'>
+					budget: $&nbsp;<input type='number' id='costBox' class='smallBox' name='budget' required>
+	        		burnRate: $&nbsp;<input type='number' id='costBox' class='smallBox' name='burnRate' required>
+					<!-- $&nbsp;<input id='costBox' class='smallBox' type="text" name="cost" value="30.00"> -->
+					<a href='/'><div class='button'>Cancel</div></a>
+					<div ><input type='submit' value='Submit' class='button'></input></div>
+					<div class='note'>*Enter your own and we'll fill the fields for you!
+				</div>
+
+			</div>
+		
+		</form>
+
+	</div>
+	<div id='mapCanvas'></div>
+	<div id='mapInfo'></div>

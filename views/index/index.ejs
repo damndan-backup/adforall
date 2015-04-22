@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=title%></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="stylesheets/layout.css">
+    <link rel="shortcut icon" type="image/x-icon" href="stylesheets/images/splashicon.ico" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/gStylesheet.css">
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+
+    <!-- <link rel="stylesheet" type="text/css" href="stylesheets/Update/stylesheet_new.css"> -->
+
+
+    <script type="text/javascript" src="stylesheets/script.js"></script>
+  </head>
+  <body>
+
+        <center>
+            
+            <div id='bar'></div>
+
+            <img src='stylesheets/images/titleBlue.png' id='title'/>
+
+            <div id='info' class='selectable'>Sign in to your advertising dashboard:</div>
+            
+            <form id="logIn" method="post" action='/signin?type=advertiser' name="logInForm" autocomplete="off">
+                <input type='hidden' name='_csrf' value='<%=csrfToken%>'>
+
+                <input id='user' class='box' type="text" name="email" placeholder="email"><br>
+                <input id='pass' class='box' type="password" name="password" placeholder="password"><br>
+
+                <div id='goContainer'><input id='goButton' type='submit' value='Go'></input></div>
+                <!--<div id='goContainer'><a href="Dashboard/index.html"><div id='goButton'>Go</div></a></div>-->
+            </form><br><br><br><br>
+
+            <div class='selectable'>New to Splash? <a href="/signup?type=advertiser">Sign Up Here</a></div>
+
+        </center>
+    </body>
+</html>
+
+
+
+<!--
+<% /*layout('../layout')*/ -%>
+<div class = 'jumbotron'>
+    <div class="container">
+        <h2 class="jumbotron-subject">Audio and Advertisement</h2>
+        <p>
+            Some text some textSome text some textSome text some textSome text some textSome text some textSome text some text
+        </p>
+    </div>
+</div>
+
+<div class="main wrapper">
+    <div class="container">
+        <h2>Signin for Advertisers</h2>
+        <form method='post' action='/signin?type=advertiser'>
+            <input type='hidden' name='_csrf' value='<%=csrfToken%>'>
+
+            <input type='text' name='email' placeholder='email'>
+            <input type='password' name='password' placeholder='password'>
+            <input type='submit' value='Signin'>
+        </form>
+        </br>
+        <h2>Signin for Publishers</h2>
+        <form method='post' action='/signin?type=publihser'>
+            <input type='hidden' name='_csrf' value='<%=csrfToken%>'>
+
+            <input type='text' name='email' placeholder='email'>
+            <input type='password' name='password' placeholder='password'>
+            <input type='submit' value='Signin'>
+    </div>
+</div>
+

@@ -1,0 +1,124 @@
+<!DOCTYPE html>  
+
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8" />
+		<title>Splash</title>
+		<link rel="shortcut icon" type="image/x-icon" href="stylesheets/images/splashicon.ico" />
+		<link rel="stylesheet" type="text/css" href="stylesheets/SplashTalk/stylesheet_new.css">
+		<link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="stylesheets/SplashTalk/script_new.js"></script>
+		<script type="text/javascript" src="stylesheets/SplashTalk/mapScript_new.js"></script>
+	</head>
+
+	<body class="unselectable">
+
+		<center>
+		
+			<div id='bar'></div>
+
+			<img src='stylesheets/images/titleBlue.png' id='title'/>
+
+			<div id='info'>Enter some info and click a location to generate an advertisement!</div>
+
+			<form id='dataForm' action='/ad/targetad' method='post'>
+				<div id='data'>
+			    	<input type='hidden' name='_csrf' value='<%=csrfToken%>'><br><br>
+					
+					<div id='formPeople'>
+						<div class='formDescription'>Number of people:</div>
+						<div class='hover' title='How many people should accept for the coupon to take effect?'>&nbsp;?</div>
+						<input id='numPeople' class='smallBox' type="text" name="numPeople" value="3">
+					</div><br>
+
+					<div id='formTime'>
+						<div class='formDescription'>Time of Day:</div>
+						<div class='hover' title='During what time of the day should your ad pop up?'>&nbsp;?</div>
+						<div id='checksRight'>
+						<input type="radio" name="targeting_info[time]" value="0">Unspecified<br>
+						<input type="radio" name="targeting_info[time]" value="1">12:00 am - 4:00 am<br>
+						<input type="radio" name="targeting_info[time]" value="2">4:00 am - 8:00 am<br>
+						<input type="radio" name="targeting_info[time]" value="3">8:00 am - 12:00 pm<br>
+						<input type="radio" name="targeting_info[time]" value="4">12:00 pm - 4:00 pm<br>
+						<input type="radio" name="targeting_info[time]" value="5">4:00 pm - 8:00 pm<br>
+						<input type="radio" name="targeting_info[time]" value="6">8:00 pm - 12:00 am<br>
+					</div>
+					<div id='checksLeft'>
+						
+					</div>
+					</div><br>
+
+					<div id='formAges'>
+						<div class='formDescription'>Age Range:</div>
+						<div class='hover' title='What age range of users are you targeting?'>&nbsp;?</div>
+						<div id='checksRight'>
+							<input type="radio" name="targeting_info[age]" value="0">Unspecified<br>
+							<input type="radio" name="targeting_info[age]" value="1">0~18<br>
+							<input type="radio" name="targeting_info[age]" value="2">19~25<br>
+							<input type="radio" name="targeting_info[age]" value="3">25~35<br>
+							<input type="radio" name="targeting_info[age]" value="4">35~45<br>
+							<input type="radio" name="targeting_info[age]" value="5">45~55<br>
+							<input type="radio" name="targeting_info[age]" value="6">55~<br>
+						</div>	
+						<div id='checksLeft'>
+							
+						</div>						
+						</div><br>
+					
+					<div id='formSex'>
+						<div class='formDescription'>Sex:</div>
+						<div class='hover' title='Are you targeting male or female users?'>&nbsp;?</div>
+						<div id='radios'>
+							<input type="radio" name="sex" value="both" checked="checked">Either&nbsp;&nbsp;
+							<input type="radio" name="sex" value="male">Male&nbsp;&nbsp;
+							<input type="radio" name="sex" value="female">Female
+						</div>
+					</div><br>
+
+					<div id='formRange'>
+						<div class='formDescription'>Advertising Radius:</div>
+						<div class='hover' title="What range should your ad play within? (it'll show on the map)">&nbsp;?</div>
+						<div id='radios2'>
+							<input id='range1' type="radio" name="distance" value="1" checked="checked">1 mile&nbsp;&nbsp;
+							<input id='range2' type="radio" name="distance" value="3">3 miles&nbsp;&nbsp;
+							<input id='range3' type="radio" name="distance" value="10">10 miles
+						</div>
+					</div><br>
+
+					<div id='mapInfo'></div>
+
+
+				</div>
+
+				<input class='button' type='submit' name='submit' value='Submit'/>
+				
+			</form>
+
+			<div id='mapCanvas'></div>
+
+			<input class='button' id='goButton' type='submit' name='submit' value='Demo'/>
+
+			<div id='phoneWrapper'>
+				
+				<img id='screen' src='stylesheets/SplashTalk/images/screen.png' height='568'/>
+				
+				<div id='circles'>
+					<div class='circle'></div>
+					<div class='circle'></div>
+					<div id='lastCircle' class='circle'></div>
+				</div>
+
+				<div id='signUp'></div>
+
+			</div>
+
+			<div id='mapInfo'></div>
+
+		</center>
+
+	</body>
+
+</html>

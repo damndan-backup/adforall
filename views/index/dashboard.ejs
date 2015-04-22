@@ -1,0 +1,111 @@
+<!DOCTYPE html>  
+
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8" />
+		<title>Splash - Dashboard</title>
+		<link rel="shortcut icon" type="image/x-icon" href="stylesheets/images/splashicon.ico" />
+		<link rel="stylesheet" type="text/css" href="stylesheets/gStylesheet.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/Dashboard/stylesheet.css">
+		<link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="stylesheets/Dashboard/script_new.js"></script>
+		<script type="text/javascript" src="stylesheets/data.js"></script>
+		<script src= "stylesheets/Chart/Chart.js"></script>
+	</head>
+
+	<body class="unselectable">
+			
+		<div id='bar'></div>
+
+		<center><img src='stylesheets/images/titleBlue.png' id='title'/></center>
+		<center><a href="/demo">Demo</a></center>
+		<center><a href="/logout">Logout</a></center>
+
+		<div id='pageContainer'>
+
+				<table id='circleTable'>
+					<tr id='titleRow'>
+				    	<th colspan="2" id='titleCell'>Your Circles</th>
+				  	</tr>
+				  	<tr id='headerRow'>
+				    	<td class='locationCol'>Ad title</td>
+				    	<td class='costCol'>Cost per day</td> 
+				  	</tr>
+				  	<tr id='spacerRow'></tr>
+			  		<% for (var i = 0; i < ad.length; i++) { %>
+			  			<tr class='location'>
+			  				<td> <%= ad[i].title %> </td>
+			  				<td class='costCol'> <%= ad[i].budget %> </td>
+			  			</tr>
+			  		<% } %> 
+				  	<!-- Format for new row
+				  	<tr class='location'>
+				  		<td>Stanford University</td>
+				  		<td class='costCol'>$30.00</td>
+				  	</tr>
+					-->
+
+				</table>
+
+			<div id='analysisButton'>
+				<a href='#analysis'>
+					<img class='button' src='stylesheets/images/analysisButton.png'/>
+					<div class='Button'>Analyze selected circle</div>
+				</a>
+			</div>
+
+<!-- 			<div id='updateButton'>
+				<a href='../Update/index.html'>
+					<img class='button' src='stylesheets/images/updateButton.png'/>
+					<div class='Button'>Update selected circle</div>
+				</a>
+			</div> -->
+
+			<div id='newButton'>
+				<a href='/addad'>
+					<img class='button' src='stylesheets/images/newButton.png'/>
+					<div class='Button'>Add new circle</div>
+				</a>
+			</div>
+
+			<div id='mapCanvas'></div>
+<!--
+			<center>
+
+				<div id='analysis'>Analysis: </div>
+
+				<div id='stats'>
+					<div id='numListens' class='stat'>Total Listens</div>
+					<img class='seperator' src='stylesheets/images/blue.png'/>
+					<div id='percentUsers' class='stat'>Percent of Users</div>
+					<img class='seperator' src='stylesheets/images/blue.png'/>
+					<div id='averageDistance' class='stat'>Average Distance</div>
+					<div></div>
+					<div id='numLikes' class='stat'>Total Likes</div>
+					<img class='seperator' src='stylesheets/images/blue.png'/>
+					<div id='percentLikes' class='stat'>Percent Liked</div>
+					<img class='seperator' src='stylesheets/images/blue.png'/>
+					<div id='averageAge' class='stat'>Average Age</div><br>
+				</div>
+		
+				Select a statistic to view
+
+			</center>
+
+				<div id='chartHolder'>
+					<div id='statDescription'>Total number of listens to your ad</div>
+					<center><canvas id="chartCanvas"></canvas></center>
+				</div>
+-->
+
+			<!-- <center><a href='#bar'>Back top</a></center> -->
+			<center><a href='#bar'><img id='topButton' src='stylesheets/images/topButton.png'/></a></center>
+
+		</div>
+
+	</body>
+
+</html>

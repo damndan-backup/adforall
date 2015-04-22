@@ -1,0 +1,51 @@
+/* Override Bootstrap elements */
+
+/* Bootstrap nav */
+.navbar.navbar-default.navbar-fixed-top#ams_navigation_bar{
+  background-image: none;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  margin-bottom: 0;
+  height: 51px;
+}
+
+/* Navigation bar links*/
+.navbar.navbar-default.navbar-fixed-top#ams_navigation_bar a {
+  color: #6f5499;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.navbar.navbar-default.navbar-fixed-top#ams_navigation_bar a:hover {
+  background-color: #ebebeb;
+}
+
+/* Container of the main page*/
+.main_container {
+  /*margin-top: 51px;*/
+}
+
+/* Jumbotron */
+.main_container .jumbotron {
+  padding: 30px 15px;
+  background-color: #6f5499;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#563d7c),to(#6f5499));
+  background-image: -webkit-linear-gradient(top,#563d7c 0,#6f5499 100%);
+  background-image: linear-gradient(to bottom,#563d7c 0,#6f5499 100%);
+  background-repeat: repeat-x;
+  margin-bottom: 40px;
+  border: none;
+  height:250px;
+  color: #ffffff;
+}
+
+.main_container .jumbotron .jumbotron-subject{
+  margin-bottom: 30px;
+}
+
+/* Jumbotron paragraph*/
+.main_container .jumbotron p{
+  margin-right: 380px;
+  line-height: 1.4;
+}

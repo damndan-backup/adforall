@@ -1,0 +1,64 @@
+<!DOCTYPE html>  
+
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8" />
+		<title>Splash - Update</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/splashicon.ico" />
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="script.js"></script>
+		<script type="text/javascript" src="../data.js"></script>
+	</head>
+
+	<body class="unselectable">
+			
+		<div id='bar'></div>
+
+		<center><img src='../images/titleBlue.png' id='title'/></center>
+
+
+		<div id='pageContainer'>
+			
+			<div id='formContainer'>
+
+				<center id='header'>Customize Your Circle</center>
+
+				<div id='details' class='formHeader'>Some Details:
+
+					<div id='formName'>
+						<div class='formDescription'>Location Name:</div>
+						<input id='user' class='box' type="text" name="user" placeholder="Enter a name..."><br>
+					</div>
+					<div id='formLocation'>
+						<div class='formDescription'>Location:</div>
+						<a href='#mapCanvas'>Click the map</a>
+					</div>
+					<div id='formRadius'>
+						<div class='formDescription'>Radius:</div>
+					    <input type="range" name="listensSlider" id="radiusSlider" value="50" min="0" max="100">
+					</div>
+					<div id='formTime'>
+						<div class='formDescription'>Time of Day:</div><br>
+						<input id='startTime' class='box' type="text" name="user" placeholder=""><br>
+						<input id='endTime' class='box' type="text" name="user" placeholder=""><br>
+					</div>
+					<div id='formListens'>
+						<div class='formDescription'>Max Listens:</div>
+					    <input type="range" name="listensSlider" id="listensSlider" value="50" min="0" max="100">
+					</div>
+			
+				</div>
+			
+			</div>
+
+			<div id='mapCanvas'></div>
+
+		</div>
+
+	</body>
+
+</html>
