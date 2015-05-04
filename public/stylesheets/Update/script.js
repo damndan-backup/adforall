@@ -2,9 +2,12 @@
 // or defaults for a new circle.
 
 circleAdded = false;
-smallRad = 1609;
-midRad = 4828;
-bigRad = 16093;
+// smallRad = 1609;
+// midRad = 4828;
+// bigRad = 16093;
+mile = 1609;
+var lat = 0;
+var lng = 0;
 
 /******* Maps API Stuff *******/
 
@@ -47,12 +50,16 @@ function setMap(i) {
 
   google.maps.event.addListener(map, 'click', function(e) {
 
-    if (document.getElementById('range1').checked)
-      circleRad = smallRad;
-    else if (document.getElementById('range2').checked)
-      circleRad = midRad;
-    else if (document.getElementById('range3').checked)
-      circleRad = bigRad;
+    // if (document.getElementById('range1').checked)
+    //   circleRad = smallRad;
+    // else if (document.getElementById('range2').checked)
+    //   circleRad = midRad;
+    // else if (document.getElementById('range3').checked)
+    //   circleRad = bigRad;
+
+    //Daniel's
+    circleRad = mile * document.getElementById('listensSlider').value;
+
 
     cityCircle.setMap(null);
     // Add circle to map
@@ -73,7 +80,8 @@ function setMap(i) {
     var circleCenterLng = cityCircle.getCenter().lng();
     document.getElementById('mapInfo').innerHTML = '<input type=\'number\' name=\'targeting_info[loc]\' value=' + circleCenterLat + '><input type=\'number\' name=\'targeting_info[loc]\', value=' + circleCenterLng + '>';
 
-      
+    lat = circleCenterLat;
+    lng = circleCenterLng
   });
 
   // Enable scroll-zoom on click
@@ -170,7 +178,15 @@ function updateSlider(val, slide) {
       document.getElementById("radiusVal").innerHTML = val + " mi";
       break;
     case 1:
-      document.getElementById("listenVal").innerHTML = val;
+      document.getElementById("listenVal").innerHTML = "&nbsp;" + val + " mi";
       break;      
   }
 }
+
+
+
+// function submitted() {
+//   console.log("Lattitude", lat);
+//   console.log("Longitude", lng);
+// }
+
