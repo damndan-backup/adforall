@@ -8,6 +8,8 @@
 <div id='pageContainer'>
 
 	<form id = 'formContainer' action='/ad/create' method='post' onsubmit="return submitted();">
+<!-- 	<form id = 'formContainer' action='/ad/create' method='post'> -->
+
     <input type='hidden' name='_csrf' value='<%=csrfToken%>'>
 		<center id='header'>Customize Your Circle</center>
 
@@ -41,7 +43,7 @@
 
 			<div id='formName'>
 				<div class='formDescription'>Customize your ad:</div>
-				<div><textarea id='summary' placeholder='Enter a summary...'></textarea></div>
+				<div><textarea id='summary' name="summary" placeholder='Enter a summary...'></textarea></div>
 			</div>
 
 			<br>
@@ -77,3 +79,6 @@
 	</form>
 
 </div>
+
+
+

@@ -185,8 +185,57 @@ function updateSlider(val, slide) {
 
 
 
-// function submitted() {
-//   console.log("Lattitude", lat);
-//   console.log("Longitude", lng);
-// }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Daniel's JSON Stringify code
+
+function submitted() {
+
+
+  var title = document.getElementsByName("title").value;
+  var storeName = document.getElementsByName("storeName").value;
+  var listensSlider = document.getElementsByName("listensSlider").value;
+  // console.log("Lattitude", lat);
+  // console.log("Longitude", lng);
+  var summary = document.getElementsByName("summary").value;
+  var pic = document.getElementsByName("pic").value;
+  var url = document.getElementsByName("url").value;
+  var budget = document.getElementsByName("budget").value;
+
+  //JSON object
+  var obj = {
+    theTitle: title,
+    theStoreName: storeName,
+    theRadius: listensSlider,
+    theLattitude: lat,
+    theLongitude: lng,
+    theSummary: summary,
+    thePic: pic,
+    theUrl: url,
+    theNumAds: budget
+  };
+
+  // Stringify it with a replacer:
+  var str = JSON.stringify(obj);  
+  return str;
+
+  // JSON.stringify()
+  // receive: parse JSON to Object
+  // obj.name
+
+}
+
+
+// http://stackoverflow.com/questions/8111446/turning-json-strings-into-objects-with-methods

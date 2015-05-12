@@ -91,6 +91,7 @@ module.exports = adController = {
 
     // Create an add based on form
     create: function(req, res) {
+        // console.log("Test");
         var attrs = Utils.filterAttrs(req.body, Ad.acceptedAttrList);
         console.log(req.session.user_id);
         if(req.session.user_id) {
