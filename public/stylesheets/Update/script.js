@@ -227,14 +227,20 @@ function submitted() {
     theNumAds: budget
   };
 
-  // Stringify it with a replacer:
-  var str = JSON.stringify(obj);  
-  return str;
 
-  // JSON.stringify()
-  // receive: parse JSON to Object
-  // obj.name
-
+  var request = new XMLHttpRequest();
+  Adcontroller.create)_
+  request.addEventListener('load', function(error, entry) {
+    // var Ad = require('mongoose').model('ad');
+    if (!error) {
+      db.ad.insert(entry);
+    }
+    window.location = '/dashboard';
+  });
+  // url
+  request.open('POST', '/ad/create');
+  request.setRequestHeader('Content-type', 'application/json');
+  request.send(JSON.stringify(obj));
 }
 
 
