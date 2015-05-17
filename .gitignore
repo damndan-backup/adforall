@@ -1,0 +1,10 @@
+# ignore all swp files
+*.swp
+
+# ignore all reports from jasmine 
+/reports/*
+
+# ignore all log files from npm
+*.log
+
+.DS_Store
