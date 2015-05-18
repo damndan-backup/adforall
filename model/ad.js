@@ -74,7 +74,6 @@ module.exports = Ad = {
 
             content: {
                 type: String,
-                required: true
             },
 
             totalListens: {
