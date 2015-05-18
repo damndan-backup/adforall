@@ -21,7 +21,8 @@ var ams = {
         var bodyParser = require('body-parser');
         var expressSession = require('express-session'); //session
         var MongoStore = require('connect-mongo')(expressSession);
-        var csrf = require('csurf')
+        var csrf = require('csurf');
+	var aws = require('aws-sdk');
 
         // initialize main express app.
         this.app = express();
@@ -59,7 +60,10 @@ var ams = {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded());
         this.app.use(express.static(path.join(__dirname, 'public'))); // static files are in /public/
-        this.app.use(csrf()); // ignore CSRF protection for now (not sure what to do yet)
+        this.app.use(csrf());
+	var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
+        var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
+        var S3_BUCKET = process.env.S3_BUCKET
     },
 
     /* setErrorHandlers

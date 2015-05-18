@@ -40,6 +40,7 @@ module.exports = sessions_controller = {
             var callback = function(err, user) {
                 if (err) {
                     console.log("Error while logging in the user");
+		    res.redirect('/');
                     return;
                 }
 

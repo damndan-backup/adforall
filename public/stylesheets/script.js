@@ -1,7 +1,7 @@
 // Temporary switch to dashboard page on Enter; 
 // will later be built in with the login submission.
 window.onkeyup = function(e) {
-	signup(e);
+//	signup(e);
 };
 
 function enter() {
