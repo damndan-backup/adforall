@@ -60,17 +60,6 @@ module.exports = adController = {
         });
     },
 
-    untargeted: function(req, res) {
-        Ad.getUntargetedAd(function(err, doc) {
-            if(doc) {
-                console.log(doc);
-            } else {
-                console.log(err);
-            }
-        });
-        res.redirect('/');
-    },
-
     // Renders template for adding 
     addPage: function(req, res) {
         res.render(Utils.getViewPath('ad', 'create_ad'),

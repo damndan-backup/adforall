@@ -7,6 +7,7 @@
 
 <div id='pageContainer'>
 
+	<!-- * Variable names: title, storeName, pic, summary, latitude, longitude, radius, url, numAds -->
 	<form id = 'formContainer' action='/ad/create' method='post'>
 
     <input type='hidden' name='_csrf' value='<%=csrfToken%>'>
@@ -22,7 +23,7 @@
 			<br>
 
 			<div id='formName'>
-				<div class='formDescription'>Business Co.:</div>
+				<div class='formDescription'>Business Name:</div>
 				<input id='user' class='box' type="text" name="storeName" placeholder="Co. name..." required>
 			</div>
 
@@ -31,11 +32,12 @@
 			<div id='formName'>
 				<div class='formDescription'>Location Radius:</div>
 				<div class='slideLabel' id='listenVal'> &nbsp; 3 mi</div>
-		    <input type="range" class="slider" name="listensSlider" id="listensSlider" value="3" min="0" max="10" onchange="updateSlider(value, 1)">
+		    <input type="range" class="slider" name="radius" id="listensSlider" value="3" min="0" max="10" onchange="updateSlider(value, 1)">
 			</div>
 
 			<br>
 	
+			<!-- TODO: GOOGLE MAPS DO NOT SHOW, NEED TO EXTRACT VALUE BY NAME: latitude, longitude -->
 			<div id='mapCanvas'></div>
 			<div id='mapInfo'></div>
 
@@ -63,8 +65,7 @@
 
 			<div id='formName'>
 				<div class='formDescription'># of Ads:</div>
-				<br><br>
-				<input type='number' id='costBox' class='smallBox' name='budget' required>
+				<input type='number' id='costBox' class='smallBox' name='numAds' required>
 			</div>
 
 			<br>

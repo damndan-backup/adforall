@@ -7,104 +7,48 @@ var s3 = new AWS.S3();
 var fs = require('fs');
 var zlib = require('zlib');
 
-
+    
 module.exports = Ad = {
-
     define_schema: function() {
         this.schema = new Schema;
 
-        /* TODO: Figure out a way to store daily, and even hourly view count */
         this.schema.add({
             title: {
                 type: String,
-                required: true,
+                required: true
             },
+            storeName: {
+                type: String,
+                required: true
+            },
+            summary: {
+                type: String
+            },
+            latitude: {
+                type: Number
+            },
+            longitude: {
+                type: Number
+            },
+            radius: {
+                type: Number
+            },
+            url: {
+                type: String
+            },
+            numAds: {
+                default: 0
+            },
+            // *** Internal data
+            parent_id: String, // advertiser_id
             is_active: Boolean,
             start_date: {
                 type: Date,
-                //required: true,
             },
             end_date: {
                 type: Date,
             },
-            parent_id: String, // _id of an advertiser document 
 
-            targeting_info: {
-                sex: {
-                    type: Number, 
-                    max: 2,
-                    default: 0
-                },
-                age: {
-                    type: [Number],
-                    default: [0]
-                },
-                time: {
-                    type: [Number],
-                    default: [0]
-                },
-                loc: {
-                    type: [Number], 
-                    index: {
-                        type:'Point', 
-                        sparse: true
-                    },
-                },
-                distance: {
-                    type: Number
-                },
-            },
-
-            budget: { // total amount of money for the ad
-                type: Number,
-                index: true,
-                default: 0,
-            },
-
-            burnRate: { // amount of money paid to user when listening to the ad
-                type: Number,
-                default: 0,
-            },
-
-            random: { // To allow random querying of ads
-                type: Number,
-                index: true,
-                default: Math.random(),
-            },
-
-            content: {
-                type: String,
-            },
-
-            totalListens: {
-                type: Number,
-                default: 0
-            },
-
-            monthlyListens: {
-                type: [Number],
-                default: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            },
-
-            averageDistance: {
-                type: Number,
-                default: 0
-            },
-
-            totalLikes: {
-                type: Number,
-                default: 0
-            },
-
-            percentLiked: {
-                type: Number,
-                default: 0
-            },
-
-            averageAge: {
-                type: Number,
-                default: 0
-            }
         });
     },
 
@@ -207,9 +151,8 @@ module.exports = Ad = {
         };
 
         this.schema.statics.acceptedAttrList = [
-        'title', 'is_active', 'start_date', 'end_date',
-        'targeting_info', 'budget', 'burnRate', 'content'
-        ];
+          'title', 'storeName', 'pic', 'summary',
+          'latitude', 'longitude', 'radius', 'url', 'numAds'];
 
 
 
@@ -256,87 +199,42 @@ module.exports = Ad = {
                 }
             });
         };
-
-        /* Method to get an advertisment not based on targeting info 
-         * Is it safe to load all ads first, and then process that info? 
-         * Proposed Mechanism: Load Ad infos onto the RAM by using Redis, 
-         * And let this be refreshed every n minutes. This way, ad infos do not
-         * need to be fetched from the database every time. 
-         * In short, RAM = {Ad targeting infos } 
-         *           mongoDB = {Full Ad Info }*/
-        this.schema.statics.getUntargetedAd = function(callback) {
-            // Things to consider when fetching an untargeted ad: 
-            // 1) Cost, 2) Location? 3) Remaining budget 4) Burn rate? 
-            var noInfo = {
-                distance: 0,
-                loc: [0, 0],
-                time: [0],
-                age: [0],
-                sex: 0,
-
-            }
-
-            console.log(noInfo);
-
-            this.find({targeting_info: noInfo}, function(err, ads) {
-                console.log('ads: ' + ads);
-                if (err) {
-                    callback(err, null);
-                } else {
-                    var rand;
-                    var length = ads.length;
-                    console.log('length: ' + length);
-                    if (length != 0) {
-                        while (true) {
-                            rand = Math.floor(Math.random()*length);
-                            console.log('rand: ' + rand);
-                            if(ads[rand].budget >= ads[rand].burnRate) {
-                                break;
-                            }
-                        }                       
-                    }
-
-
-                    callback(null, ads[rand]);
-                }
-            });
-
-        };
-
+        // TODO: fix implementation
         /* Method to get an advertisment based on the given targeting info */
         this.schema.statics.getTargetedAd = function (targetInfo, callback) {
-                target_info = targetInfo;
-                //target_info.budget = {$gt : 0};
-                this.find_candidates(target_info, function(err, ads) {
-                    if (err) {
-                        console.log(err);
-                        callback(err, null);
-                    } else {
-    
-                        var rand;
-                        var length = ads.length;
-                        
-                        var i = 0;                        
-                        console.log(length);
-                        while (i < length) {
-                            
-                            rand = Math.floor(Math.random()*length);
-                            console.log("rand " + rand);
-                            if(ads[rand].budget >= ads[rand].burnRate) {
-                                break;
-                            }
+          this.schema.statics.getRandomAd(target)
+          target_info = targetInfo;
+          //target_info.budget = {$gt : 0};
+          this.find_candidates(target_info, function(err, ads) {
+              if (err) {
+                  console.log(err);
+                  callback(err, null);
+              } else {
 
-                            i++;
-                        }
+                  var rand;
+                  var length = ads.length;
+                  
+                  var i = 0;                        
+                  console.log(length);
+                  while (i < length) {
+                      
+                      rand = Math.floor(Math.random()*length);
+                      console.log("rand " + rand);
+                      if(ads[rand].budget >= ads[rand].burnRate) {
+                          break;
+                      }
 
-                        if (length == 0 || ads[rand].budget < ads[rand].burnRate) {
-                            callback('No ads matching', null);
-                        } else {
-                            callback(null, ads[rand]);
-                        }
+                      i++;
+                  }
 
-                    }
-                });
+                  if (length == 0 || ads[rand].budget < ads[rand].burnRate) {
+                      callback('No ads matching', null);
+                  } else {
+                      callback(null, ads[rand]);
+                  }
+
+              }
+          });
 
         };
     }, 
